@@ -8,15 +8,15 @@ internal class CreateShipsGameTests {
 
     @Test
     fun `WHEN empty game created THEN game over`() {
-        val game = ShipsGameBuilder()
+        val game = ShipsGameBuilder(GameRules.NoRules)
             .build()
 
         Assertions.assertFalse(game.isGameInProgress())
     }
 
     @Test
-    fun `WHEN one ship game created THEN game in progress`() {
-        val game = ShipsGameBuilder()
+    fun `WHEN valid game created THEN game in progress`() {
+        val game = ShipsGameBuilder(GameRules.NoRules)
             .addPlayerAShip(Ship.fromFormalString("(1,1) [4]"))
             .addPlayerBShip(Ship.fromFormalString("(1,1) [4]"))
             .build()
