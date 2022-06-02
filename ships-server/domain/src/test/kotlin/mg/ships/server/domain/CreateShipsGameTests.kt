@@ -11,6 +11,17 @@ internal class CreateShipsGameTests {
         val game = ShipsGameBuilder()
             .build()
 
-        Assertions.assertEquals(ShipsGame.State.GAME_OVER, game.state)
+        Assertions.assertFalse(game.isGameInProgress())
     }
+
+    @Test
+    fun `WHEN one ship game created THEN game in progress`() {
+        val game = ShipsGameBuilder()
+            .addPlayerAShip(Ship.fromFormalString("(1,1) [4]"))
+            .addPlayerBShip(Ship.fromFormalString("(1,1) [4]"))
+            .build()
+
+        Assertions.assertTrue(game.isGameInProgress())
+    }
+
 }
