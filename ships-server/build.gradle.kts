@@ -8,13 +8,23 @@ subprojects {
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
     dependencies {
-        testImplementation("org.jetbrains.kotlin:kotlin-test-junit:$kotlin_version")
+        testImplementation(platform("org.junit:junit-bom:5.8.2"))
+        testImplementation("org.junit.jupiter:junit-jupiter")
+        testImplementation("org.jetbrains.kotlin:kotlin-test-junit5:$kotlin_version")
     }
 
 
     repositories {
         mavenCentral()
         maven { url = uri("https://maven.pkg.jetbrains.space/public/p/ktor/eap") }
+    }
+
+
+    tasks.test {
+        useJUnitPlatform()
+        testLogging {
+            events("passed", "skipped", "failed")
+        }
     }
 }
 
