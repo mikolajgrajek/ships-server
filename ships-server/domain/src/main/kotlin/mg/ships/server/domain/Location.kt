@@ -5,13 +5,13 @@ data class Location(
     val y: Int
 ) {
     init {
-        require(x in 1..10)
-        require(y in 1..10)
+        require(x in 1..GameRules.MAX_X_VALUE)
+        require(y in 1..GameRules.MAX_Y_VALUE)
     }
 
 
     fun toFormalString(): String = "($x,$y)"
-    
+
     override fun toString(): String = toFormalString()
 
     companion object {
